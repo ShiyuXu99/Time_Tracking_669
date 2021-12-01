@@ -1,21 +1,89 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './Components/HomeScreen';
+import Timer from './Components/Timer';
+import DataPage from './Components/DataPage';
+import AddActivity from './Components/AddActivity';
 
-export default function App() {
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons'; 
+
+const Stack = createNativeStackNavigator();
+
+// export default function App() {
+//   const Tab = createBottomTabNavigator();
+  
+//   return (
+//     <NavigationContainer>
+      
+//     </NavigationContainer>
+//   );
+// }
+
+
+
+
+// export default App;
+
+
+const Tab = createBottomTabNavigator();
+
+// function MyTabs() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Home" component={HomeScreen} />
+//       <Tab.Screen name="Timer" component={Timer} />
+//     </Tab.Navigator>
+//   );
+// }
+
+export function HomeScreenStack() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    // <NavigationContainer>
+      <Tab.Navigator 
+    
+      tabBarOptions={{ showLabel: false }}
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === 'Home') {
+              iconName = 'home'
+            } else if (route.name === 'Add Activity') {
+              iconName = 'plus-circle'
+            } else if (route.name === 'Data Page') {
+              iconName = 'pie-chart'
+            }
+            // You can return any component that you like here!
+            return <Feather name={iconName} size={'20'} color={color} />;
+          },
+          tabBarActiveTintColor: '#979BF0',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Add Activity" component={AddActivity} />
+        <Tab.Screen name="Data Page" component={DataPage} />
+
+      </Tab.Navigator>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{
+    headerShown: false
+  }}>
+        <Stack.Screen 
+            name="Home" 
+            component={HomeScreenStack} 
+            options={{ title: 'Time_Tracking_669' }}/>
+        <Stack.Screen name="Timer" component={Timer} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
