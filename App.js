@@ -58,7 +58,7 @@ export function HomeScreenStack() {
             // You can return any component that you like here!
             return <Feather name={iconName} size={'20'} color={color} />;
           },
-          tabBarActiveTintColor: '#979BF0',
+          tabBarActiveTintColor: '#5258E4',
           tabBarInactiveTintColor: 'gray',
         })}
       >

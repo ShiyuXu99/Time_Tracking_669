@@ -8,12 +8,16 @@ import { Icon } from 'react-native-elements'
 
 // import { getDataModel } from './DataModel';
 
+
 function HomeScreen({ navigation }) {
     const list = [{'Title': 'Homework', 'Time' : '30min'}, {'Title': 'Debug', 'Time' : '30min'},  
     {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'}]
     const colorList = ['red','green', 'blue']
+    
 
+    let startTime=()=>{
 
+    }
     return (
   
         <View style={styles.container}>
@@ -41,9 +45,7 @@ function HomeScreen({ navigation }) {
                                             <Icon name='play'
                                              type='feather'
                                               color='black'
-                                              onPress={() => {
-                                                navigation.navigate("Timer");
-                                            }}
+                                              onPress={startTime}
                                               />
                                         </Text>
                                     </View>
@@ -55,9 +57,9 @@ function HomeScreen({ navigation }) {
                 />
             </View>
 
-            <View style={styles.navbarContainer}>
+            {/* <View style={styles.navbarContainer}>
 
-            </View>
+            </View> */}
 
         </View>
 
@@ -68,7 +70,7 @@ function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#E8EAFE',
       alignItems: 'center',
       justifyContent: 'space-around',
       fontFamily: 'Rubik',
@@ -76,14 +78,14 @@ const styles = StyleSheet.create({
     uppderContainer: {
         flex: 2,
         width:'100%',
-        backgroundColor: 'red',
+        // backgroundColor: 'red',
     },
     listContainer: {
         flex: 7,
-        padding: 30,
+        paddingHorizontal: 30,
         width: '100%',
         flexDirection: 'column',
-        backgroundColor:'grey',
+        // backgroundColor:'grey',
       },
       listContentContainer: {
         display: 'flex',
@@ -125,7 +127,7 @@ const styles = StyleSheet.create({
       navbarContainer: {
         flex: 1,
         width:'100%',
-        backgroundColor: 'blue',
+        // backgroundColor: 'blue',
     },
     iconContainer: {
         display:'flex',
