@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from 'react';
 // import { Button } from 'react-native-elements';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, TouchableHighlight } from 'react-native';
 import { BottomSheet, ListItem, CheckBox } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 // import { MaterialIcons as Icon } from '@expo/vector-icons';
 import { Icon } from 'react-native-elements'
-
-// import { getDataModel } from './DataModel';
+import { SwipeListView } from 'react-native-swipe-list-view';
+import { getDataModel } from './DataModel';
 
 
 function HomeScreen({ navigation }) {
-    const list = [{'Title': 'Homework', 'Time' : '30min'}, {'Title': 'Debug', 'Time' : '30min'},  
-    {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'}]
-    const colorList = ['red','green', 'blue']
+    // const list = [{'Title': 'Homework', 'Time' : '30min'}, {'Title': 'Debug', 'Time' : '30min'},  
+    // {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'}]
+    // const colorList = ['red','green', 'blue']
+
+  const dataModel = getDataModel();
+  const [trackingList, setTrackingList] = useState(dataModel.getTrackingListCopy());
+
+  useEffect(()=>{
+    dataModel.subscribeToUpdates(()=>{
+      setTrackingList(dataModel.getTrackingListCopy());
+    });
+  }, []);
+
+    const rightButtons = [
+      <TouchableHighlight><Text>Delete</Text></TouchableHighlight>,
+    ];
     
 
-    let startTime=()=>{
+    // let startTime=()=>{
 
-    }
+    // }
     return (
   
         <View style={styles.container}>
@@ -26,6 +39,51 @@ function HomeScreen({ navigation }) {
             </View>
 
             <View style={styles.listContainer}>
+
+
+            <SwipeListView
+                    data={trackingList}
+                    renderItem={ ({item}) =>  (
+                      <View style={styles.listItem}>
+                          <View style={styles.listItemContainer}>
+        
+                              <View>
+                                  <Text style={styles.listItemText}>{item.text}</Text>
+                                  <View style={styles.timeContainer}>
+                                    <Text>{item.Time}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
+                                  </View>
+                              </View>
+
+                              <View style={styles.iconContainer}>
+                                <View style={styles.play}>
+                                  <Icon name='play'
+                                    type='feather'
+                                    color='black'
+                                    onPress={() => {
+                                      navigation.navigate("Timer");
+                                    }}
+                                  />
+                                </View>
+                              </View>
+                          </View>
+                      
+                      </View>
+                  )
+                  }
+            renderHiddenItem={ (data, rowMap) => (
+                <View style={styles.deleteContainer}>
+                  <View style={styles.delete}>
+                    <Icon name='trash'
+                      type='feather'
+                        color='white'
+                    />
+                    </View>
+                </View>
+            )}
+            rightOpenValue={-75}
+        />
+
+{/* 
                 <FlatList
                     contentContainerStyle={styles.listContentContainer}
                     data={list}
@@ -33,19 +91,23 @@ function HomeScreen({ navigation }) {
                         return (
                             <View style={styles.listItem}>
                                 <View style={styles.listItemContainer}>
-                                  
+
+                
                                     <View>
                                         <Text style={styles.listItemText}>{item.Title}</Text>
                                         <View style={styles.timeContainer}>
-                                        <Text>{item.Time}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='18'/>
+                                          <Text>{item.Time}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
                                         </View>
                                     </View>
+
                                     <View style={styles.iconContainer}>
                                         <Text>
                                             <Icon name='play'
                                              type='feather'
                                               color='black'
-                                              onPress={startTime}
+                                              onPress={() => {
+                                                navigation.navigate("Timer");
+                                            }}
                                               />
                                         </Text>
                                     </View>
@@ -54,7 +116,7 @@ function HomeScreen({ navigation }) {
                             </View>
                         );
                     }}
-                />
+                /> */}
             </View>
 
             {/* <View style={styles.navbarContainer}>
@@ -96,8 +158,8 @@ const styles = StyleSheet.create({
       },
       listItem: {
         flex: 1,
-        marginBottom:'8%',
-        padding: '8%',
+        marginBottom:'7%',
+        padding: '7%',
         backgroundColor: 'white',
         borderRadius: 10,
         justifyContent: 'center',
@@ -131,9 +193,29 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         display:'flex',
-        paddingTop: 10,
-        height: 40,
-    }
+        flexDirection: 'row',
+        // paddingTop: 10,
+        // height: 40,
+        alignItems: 'center',
+    },
+    deleteContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      height: '79%',
+      justifyContent: 'flex-end',
+    },
+    delete: {
+      display:'flex',
+      flex: 0.25,
+      backgroundColor:'#5258E4',
+      justifyContent:'center',
+      borderRadius: 10,
+    },
+    play: {
+      display:'flex',
+      justifyContent:'center',
+    },
+
  
   });
   

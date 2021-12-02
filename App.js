@@ -50,20 +50,20 @@ export function HomeScreenStack() {
             let iconName;
             if (route.name === 'Home') {
               iconName = 'home'
-            } else if (route.name === 'Add Activity') {
+            } else if (route.name === 'New Task') {
               iconName = 'plus-circle'
             } else if (route.name === 'Data Page') {
               iconName = 'pie-chart'
             }
             // You can return any component that you like here!
-            return <Feather name={iconName} size={'20'} color={color} />;
+            return <Feather name={iconName} size={20} color={color} />;
           },
           tabBarActiveTintColor: '#5258E4',
           tabBarInactiveTintColor: 'gray',
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Add Activity" component={AddActivity} />
+        <Tab.Screen name="New Task" component={AddActivity} />
         <Tab.Screen name="Data Page" component={DataPage} />
 
       </Tab.Navigator>
