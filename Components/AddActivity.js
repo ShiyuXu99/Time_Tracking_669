@@ -7,10 +7,11 @@ import { getDataModel } from './DataModel';
 function AddActivity({ navigation }) {
 
 
-  const colors = ['red', 'blue', 'yellow'];
+  const colors = ['red', 'blue', 'yellow', 'purple','green'];
 
   const [inputText, setInputText] = useState('');
   const [color, setColor] = useState(colors[0]);
+
 
   
   let dataModel = getDataModel();
@@ -31,30 +32,50 @@ function AddActivity({ navigation }) {
 
             <View style={styles.prioritySelectionContainer}>
               <Text style={styles.label}>Tag Color</Text>
-              <View>
-                <FlatList 
-                  contentContainerStyle={styles.prioritySelectionContentContainer}
-                  data={colors}
-                  renderItem={({item})=>{
-                    return (
-                      <TouchableOpacity
-                      onPress={() => {
-                        setColor(item);}}
-                      style={{
-                        width: 30,
-                        height: 30,
-                        borderRadius: 30,
-                        backgroundColor: item,
-                        borderWidth: 5,
-                        borderColor: item===color?'grey': 'white',
-                      }}>
-                      </TouchableOpacity>
-                    );
-                  }}
-                />
+              <View style={styles.colorContainer}>
+                  {
+                      colors.map((item)=>(
+                          <View style={styles.colorCell}>
+                              <TouchableOpacity
+                                    onPress={() => {
+                                      setColor(item);}}
+                                    style={{
+                                      width: 30,
+                                      height: 30,
+                                      borderRadius: 30,
+                                      backgroundColor: item,
+                                      borderWidth: 5,
+                                      borderColor: item===color?'grey': 'white',
+                                    }}>
+                              </TouchableOpacity>
+                          </View>
+                      ))
+                  }
+
+                {/*<FlatList */}
+                {/*  contentContainerStyle={styles.prioritySelectionContentContainer}*/}
+                {/*  data={colors}*/}
+                {/*  renderItem={({item})=>{*/}
+                {/*    return (*/}
+                {/*      <TouchableOpacity*/}
+                {/*      onPress={() => {*/}
+                {/*        setColor(item);}}*/}
+                {/*      style={{*/}
+                {/*        width: 30,*/}
+                {/*        height: 30,*/}
+                {/*        borderRadius: 30,*/}
+                {/*        backgroundColor: item,*/}
+                {/*        borderWidth: 5,*/}
+                {/*        borderColor: item===color?'grey': 'white',*/}
+                {/*      }}>*/}
+                {/*      </TouchableOpacity>*/}
+                {/*    );*/}
+                {/*  }}*/}
+                {/*/>*/}
               </View>
             </View>
-
+                
+            
           </View>
 
           <View style={styles.buttonContainer}>
@@ -148,8 +169,8 @@ const styles = StyleSheet.create({
       flex: 1,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'space-around',
-      alignItems: 'flex-start',
+      // justifyContent: 'space-around',
+      // alignItems: 'flex-start',
       marginTop: 40,
       marginHorizontal: 40,
       backgroundColor: 'grey',
@@ -161,6 +182,15 @@ const styles = StyleSheet.create({
       justifyContent: 'space-evenly',
       alignItems: 'center'
     },
+    colorContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+
+    },
+    colorCell: {
+        flex: 0.2,
+    }
 
 
  
