@@ -6,10 +6,12 @@ import { getDataModel } from './DataModel';
 
 function AddActivity({ navigation }) {
 
-  const colors = ['red','green', 'blue']
+
+  const colors = ['red', 'blue', 'yellow'];
 
   const [inputText, setInputText] = useState('');
   const [color, setColor] = useState(colors[0]);
+
   
   let dataModel = getDataModel();
     
@@ -17,43 +19,43 @@ function AddActivity({ navigation }) {
         <View style={styles.container}>
 
           <View style={styles.activityContainer}>
+
             <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>Task:</Text>
+              <Text style={styles.label}>Task</Text>
               <Input  
-                containerStyle={styles.inputBox} 
                 placeholder=" Add new task"
                 onChangeText={(text)=>setInputText(text)}
                 value={inputText}
               />
             </View>
 
-            {/* <View style={styles.colorSelectionContainer}>
-              <Text style={styles.colorLabel}>Lable Color:</Text>
-              <FlatList 
-              contentContainerStyle={styles.colorSelectionContainer}
-                data={colors}
-                renderItem={({item})=>{
-                  return (
-                    <TouchableOpacity
-                      style={styles.colorbutton}
-                      backgroundColor={item}
+            <View style={styles.prioritySelectionContainer}>
+              <Text style={styles.label}>Tag Color</Text>
+              <View>
+                <FlatList 
+                  contentContainerStyle={styles.prioritySelectionContentContainer}
+                  data={colors}
+                  renderItem={({item})=>{
+                    return (
+                      <TouchableOpacity
                       onPress={() => {
                         setColor(item);}}
-                      borderColor={item===color?'purple': 'white'}>
-                    </TouchableOpacity>
-                    // <Button 
-                    //   text=
-                    //   onPress={()=>{
-                    //     setColor(item)
-                    //   }}
-                    //   bordercolor={item===priority?'purple': 'white'}
-                    // />
-                  );
-                }}
-                keyExtractor={(item, index)=>item}
-              />
-            </View> */}
-
+                      style={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: 30,
+                        backgroundColor: item,
+                        borderWidth: 5,
+                        borderColor: item===color?'grey': 'white',
+                      }}>
+                      </TouchableOpacity>
+                    );
+                  }}
+                />
+              </View>
+            </View>
+                
+            
           </View>
 
           <View style={styles.buttonContainer}>
@@ -93,6 +95,7 @@ const styles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-around',
+      backgroundColor: 'yellow',
 
     },
     buttonContainer: {
@@ -104,20 +107,21 @@ const styles = StyleSheet.create({
       // backgroundColor: 'yellow'
     },
     inputContainer: {
-      flex: 0.3,
+      flex: 1,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'space-between',
+      justifyContent: 'space-around',
       alignItems: 'flex-start',
-      padding: 40,
+      marginTop: 40,
+      marginHorizontal: 40,
+      backgroundColor: 'red',
     },
-    inputLabel: {
-      flex: 1,
+    label: {
+      // flex: 1,
       paddingLeft: 10,
-      fontSize: 18,
-    },
-    inputBox: {
-      flex: 1,
+      fontSize: 20,
+      fontWeight: '500',
+      letterSpacing: 0.5,
     },
     button1: {
       alignItems: "center",
@@ -141,12 +145,23 @@ const styles = StyleSheet.create({
       fontWeight: '500',
       letterSpacing: 0.5,
     },
-    // button2: {
-    //   alignItems: "center",
-    //   width: 40,
-    //   height: 40,
-    //   borderRadius: 20,
-    // },
+    prioritySelectionContainer: {
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      alignItems: 'flex-start',
+      marginTop: 40,
+      marginHorizontal: 40,
+      backgroundColor: 'grey',
+    },
+    prioritySelectionContentContainer: {
+      // flex: 1,
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      alignItems: 'center'
+    },
 
 
  
