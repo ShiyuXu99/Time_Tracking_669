@@ -16,21 +16,23 @@ function HomeScreen({ navigation }) {
 
   const dataModel = getDataModel();
   const [trackingList, setTrackingList] = useState(dataModel.getTrackingListCopy());
-
+  // const rightButtons = [
+  //       <TouchableHighlight><Text>Delete</Text></TouchableHighlight>,
+  //   ];
+  let getTime = (time)=>{
+      let date = new Date(null);
+      date.setSeconds(time); // specify value for SECONDS here
+      let result = date.toISOString().substr(11, 8);
+      return result;
+  }
   useEffect(()=>{
     dataModel.subscribeToUpdates(()=>{
       setTrackingList(dataModel.getTrackingListCopy());
     });
   }, []);
 
-    const rightButtons = [
-      <TouchableHighlight><Text>Delete</Text></TouchableHighlight>,
-    ];
-    
 
-    // let startTime=()=>{
 
-    // }
     return (
   
         <View style={styles.container}>
@@ -50,7 +52,7 @@ function HomeScreen({ navigation }) {
                               <View>
                                   <Text style={styles.listItemText}>{item.text}</Text>
                                   <View style={styles.timeContainer}>
-                                    <Text>{item.time}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
+                                    <Text>{getTime(item.time)}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
                                   </View>
                               </View>
 
