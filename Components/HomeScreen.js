@@ -60,7 +60,9 @@ function HomeScreen({ navigation }) {
                                     type='feather'
                                     color='black'
                                     onPress={() => {
-                                      navigation.navigate("Timer");
+                                      navigation.navigate("Timer", {
+                                          item: item
+                                      });
                                     }}
                                   />
                                 </View>

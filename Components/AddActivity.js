@@ -53,8 +53,7 @@ function AddActivity({ navigation }) {
                 keyExtractor={(item, index)=>item}
               />
             </View> */}
-            
-            
+
           </View>
 
           <View style={styles.buttonContainer}>

@@ -51,6 +51,10 @@ class DataModel {
         this.updateSubscribers();
     }
 
+    async updateTime(item) {
+        this.updateSubscribers();
+    }
+
     async deleteItem(key) {
         const docRef = doc(db, 'TrackingList', key);
         await deleteDoc(docRef);
