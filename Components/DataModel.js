@@ -22,7 +22,7 @@ class DataModel {
     }
 
     subscribeToUpdates(callback) {
-        console.log("new subscriber: ", callback);
+        // console.log("new subscriber: ", callback);
         this.subscribers.push(callback);
     }
 
@@ -51,7 +51,9 @@ class DataModel {
         this.updateSubscribers();
     }
 
-    async updateTime(item) {
+    async updateTime( key, newItem) {
+        const trackingListRef = doc(db, 'ListItems', key);
+        let docRef = await setDoc(trackingListRef, newItem);
         this.updateSubscribers();
     }
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Button } from "react-native";
 import { useStopwatch } from 'react-timer-hook';
-import { Header } from 'react-native/Libraries/NewAppScreen';
-import {getCurrentTimestamp} from "react-native/Libraries/Utilities/createPerformanceLogger";
-
+import { getDataModel } from './DataModel';
 
 function Timer({ navigation, route }) {
-
-  const stopwatchOffset = new Date(); stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + 300);
+  let dataModel = getDataModel();
+  const item = route.params.item;
+  const [time, setTime] = useState(item.time);
+  const stopwatchOffset = new Date(); stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + time);
 
   let {
     seconds,
@@ -20,7 +20,6 @@ function Timer({ navigation, route }) {
     reset,
   } = useStopwatch({ autoStart: true , offsetTimestamp:stopwatchOffset});
   const [pauseStatus, setPauseStatus] = useState(false)
-  const item = route.params.item;
 
   useEffect(()=>{
       let seconds = item.time;
@@ -54,7 +53,6 @@ function Timer({ navigation, route }) {
           onPress={() => {
             pauseStatus? start() : pause();
             setPauseStatus(!pauseStatus);
-            console.log(minutes + " :" + seconds)
           }}
         >
           <Text>{pauseStatus? 'Restart':'Pause'}</Text>
@@ -63,6 +61,9 @@ function Timer({ navigation, route }) {
         <TouchableOpacity
           style={styles.purplebutton}
           onPress={() => {
+            let tempTime = hours*3600 + minutes*60 + seconds;
+            console.log(tempTime)
+            dataModel.updateTime(item.key, {text: item.text, time: tempTime});
             navigation.navigate("Home");
           }}
         >
