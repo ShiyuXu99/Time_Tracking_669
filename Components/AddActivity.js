@@ -7,7 +7,7 @@ import { getDataModel } from './DataModel';
 function AddActivity({ navigation }) {
 
 
-  const colors = ['red', 'blue', 'yellow', 'purple','green'];
+  const colors = ['#87b9e7', '#F29C98', '#A990DD', '#91cec2','#ffe0ab'];
 
   const [inputText, setInputText] = useState('');
   const [color, setColor] = useState(colors[0]);
@@ -23,15 +23,16 @@ function AddActivity({ navigation }) {
 
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Task</Text>
-              <Input  
+              <Input  style={styles.inputText}
                 placeholder=" Add new task"
                 onChangeText={(text)=>setInputText(text)}
                 value={inputText}
               />
             </View>
 
-            <View style={styles.prioritySelectionContainer}>
+            <View style={styles.colorSelectionContainer}>
               <Text style={styles.label}>Tag Color</Text>
+
               <View style={styles.colorContainer}>
                   {
                       colors.map((item)=>(
@@ -45,48 +46,28 @@ function AddActivity({ navigation }) {
                                       borderRadius: 30,
                                       backgroundColor: item,
                                       borderWidth: 5,
-                                      borderColor: item===color?'grey': 'white',
+                                      borderColor: item===color?'#E5E5E5': 'white',
                                     }}>
                               </TouchableOpacity>
                           </View>
                       ))
                   }
 
-                {/*<FlatList */}
-                {/*  contentContainerStyle={styles.prioritySelectionContentContainer}*/}
-                {/*  data={colors}*/}
-                {/*  renderItem={({item})=>{*/}
-                {/*    return (*/}
-                {/*      <TouchableOpacity*/}
-                {/*      onPress={() => {*/}
-                {/*        setColor(item);}}*/}
-                {/*      style={{*/}
-                {/*        width: 30,*/}
-                {/*        height: 30,*/}
-                {/*        borderRadius: 30,*/}
-                {/*        backgroundColor: item,*/}
-                {/*        borderWidth: 5,*/}
-                {/*        borderColor: item===color?'grey': 'white',*/}
-                {/*      }}>*/}
-                {/*      </TouchableOpacity>*/}
-                {/*    );*/}
-                {/*  }}*/}
-                {/*/>*/}
               </View>
             </View>
-                
-            
+
           </View>
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.button1}
               onPress={() => {
-                dataModel.addItem({text: inputText, time: 0});
+                dataModel.addItem({text: inputText, time: 0, color: {color}});
+                navigation.navigate("Home");
             }}>
               <Text style={styles.buttonText}>Add Task</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity
               style={styles.button2}
               onPress={() => {
@@ -111,33 +92,32 @@ const styles = StyleSheet.create({
       fontFamily: 'Rubik',
     },
     activityContainer: {
-      flex: 0.6,
+      marginVertical: 40,
+      flex: 1.2,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'space-around',
-      backgroundColor: 'yellow',
+      justifyContent: 'center',
 
     },
     buttonContainer: {
-      flex: 0.4,
+      flex: 1,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      // backgroundColor: 'yellow'
     },
     inputContainer: {
-      flex: 1,
+      height: '40%',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-around',
       alignItems: 'flex-start',
-      marginTop: 40,
       marginHorizontal: 40,
-      backgroundColor: 'red',
+    },
+    inputText: {
+     fontSize: 18,
     },
     label: {
-      // flex: 1,
       paddingLeft: 10,
       fontSize: 20,
       fontWeight: '500',
@@ -165,22 +145,13 @@ const styles = StyleSheet.create({
       fontWeight: '500',
       letterSpacing: 0.5,
     },
-    prioritySelectionContainer: {
-      flex: 1,
+    colorSelectionContainer: {
+      height: '40%',
       display: 'flex',
       flexDirection: 'column',
-      // justifyContent: 'space-around',
-      // alignItems: 'flex-start',
+      justifyContent: 'space-around',
       marginTop: 40,
       marginHorizontal: 40,
-      backgroundColor: 'grey',
-    },
-    prioritySelectionContentContainer: {
-      // flex: 1,
-      width: '100%',
-      flexDirection: 'row',
-      justifyContent: 'space-evenly',
-      alignItems: 'center'
     },
     colorContainer: {
         display: 'flex',
@@ -188,9 +159,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
 
     },
-    colorCell: {
-        flex: 0.2,
-    }
 
 
  
