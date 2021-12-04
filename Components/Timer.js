@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Button } from "react-native";
 import { useStopwatch } from 'react-timer-hook';
-import { Header } from 'react-native/Libraries/NewAppScreen';
+import { getDataModel } from './DataModel';
 
+function Timer({ navigation, route }) {
+  let dataModel = getDataModel();
+  const item = route.params.item;
+  const [time, setTime] = useState(item.time);
+  const stopwatchOffset = new Date(); stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + time);
 
-function Timer({ navigation }) {
-  const {
+  let {
     seconds,
     minutes,
     hours,
@@ -14,7 +18,12 @@ function Timer({ navigation }) {
     start,
     pause,
     reset,
-  } = useStopwatch({ autoStart: true });
+  } = useStopwatch({ autoStart: true , offsetTimestamp:stopwatchOffset});
+  const [pauseStatus, setPauseStatus] = useState(false)
+
+  useEffect(()=>{
+      console.log(time)
+  },[])
 
   return (
     <View style={styles.container}>
@@ -34,38 +43,32 @@ function Timer({ navigation }) {
 
       <View style={styles.timeCell}>
         <Text style={{ fontSize: 40 }}>
-          
         {days}:{hours}:{minutes}:{seconds} 
         </Text>
-
       </View>
 
-
       <View style={styles.buttonCell}>
-        
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            pause();
-            // navigation.navigate("Home");
+            pauseStatus? start() : pause();
+            setPauseStatus(!pauseStatus);
           }}
         >
-          <Text>Press Here</Text>
+          <Text>{pauseStatus? 'Restart':'Pause'}</Text>
         </TouchableOpacity>
-
-        {/*<button onClick={start}>Start</button>*/}
-        {/*<button onClick={pause}>Pause</button>*/}
-        {/*<button onClick={reset}>Reset</button>*/}
 
         <TouchableOpacity
           style={styles.purplebutton}
           onPress={() => {
+            let tempTime = hours*3600 + minutes*60 + seconds;
+            console.log(tempTime)
+            dataModel.updateTime(item.key, {text: item.text, time: tempTime});
             navigation.navigate("Home");
           }}
         >
-          <Text>Press Here</Text>
+          <Text>Finish</Text>
         </TouchableOpacity>
-
       </View>
     </View>
 

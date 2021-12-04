@@ -50,7 +50,7 @@ function HomeScreen({ navigation }) {
                               <View>
                                   <Text style={styles.listItemText}>{item.text}</Text>
                                   <View style={styles.timeContainer}>
-                                    <Text>{item.Time}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
+                                    <Text>{item.time}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
                                   </View>
                               </View>
 
@@ -60,13 +60,14 @@ function HomeScreen({ navigation }) {
                                     type='feather'
                                     color='black'
                                     onPress={() => {
-                                      navigation.navigate("Timer");
+                                      navigation.navigate("Timer", {
+                                          item: item
+                                      });
                                     }}
                                   />
                                 </View>
                               </View>
                           </View>
-                      
                       </View>
                   )
                   }

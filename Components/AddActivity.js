@@ -54,15 +54,14 @@ function AddActivity({ navigation }) {
                 />
               </View>
             </View>
-                
-            
+
           </View>
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.button1}
               onPress={() => {
-                dataModel.addItem({text: inputText}); 
+                dataModel.addItem({text: inputText, time: 0});
             }}>
               <Text style={styles.buttonText}>Add Task</Text>
             </TouchableOpacity>

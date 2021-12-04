@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bca9f358-6d16-453a-a81b-52fcbc099fba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/AddActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/AddActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/DataModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/DataModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Components/Timer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Timer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +25,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.scopes" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -36,7 +37,7 @@
       <option name="presentableId" value="Default" />
       <updated>1638030540236</updated>
       <workItem from="1638030542209" duration="672000" />
-      <workItem from="1638503974626" duration="2347000" />
+      <workItem from="1638503974626" duration="2809000" />
     </task>
     <servers />
   </component>
