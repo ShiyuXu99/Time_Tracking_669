@@ -15,6 +15,7 @@ function Timer({ navigation }) {
     pause,
     reset,
   } = useStopwatch({ autoStart: true });
+  const [pauseStatus, setPauseStatus] = useState(false)
 
   return (
     <View style={styles.container}>
@@ -46,16 +47,12 @@ function Timer({ navigation }) {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            pause();
-            // navigation.navigate("Home");
+            pauseStatus? start() : pause();
+            setPauseStatus(!pauseStatus);
           }}
         >
-          <Text>Press Here</Text>
+          <Text>{pauseStatus? 'Restart':'Pause'}</Text>
         </TouchableOpacity>
-
-        {/*<button onClick={start}>Start</button>*/}
-        {/*<button onClick={pause}>Pause</button>*/}
-        {/*<button onClick={reset}>Reset</button>*/}
 
         <TouchableOpacity
           style={styles.purplebutton}
