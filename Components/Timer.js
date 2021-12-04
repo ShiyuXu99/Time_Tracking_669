@@ -46,11 +46,16 @@ function Timer({ navigation }) {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            navigation.navigate("Home");
+            pause();
+            // navigation.navigate("Home");
           }}
         >
           <Text>Press Here</Text>
         </TouchableOpacity>
+
+        {/*<button onClick={start}>Start</button>*/}
+        {/*<button onClick={pause}>Pause</button>*/}
+        {/*<button onClick={reset}>Reset</button>*/}
 
         <TouchableOpacity
           style={styles.purplebutton}

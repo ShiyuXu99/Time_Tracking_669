@@ -74,7 +74,6 @@ function AddActivity({ navigation }) {
             <Text style={styles.buttonText}>Go Back</Text>
             </TouchableOpacity>
           </View>
-
         </View>
 
     )
