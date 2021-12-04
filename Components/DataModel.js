@@ -52,7 +52,8 @@ class DataModel {
     }
 
     async updateTime( key, newItem) {
-        const trackingListRef = doc(db, 'ListItems', key);
+        const trackingListRef = doc(db, 'TrackingList', key);
+        console.log(key + newItem)
         let docRef = await setDoc(trackingListRef, newItem);
         this.updateSubscribers();
     }

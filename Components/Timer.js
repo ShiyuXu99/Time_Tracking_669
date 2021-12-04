@@ -22,7 +22,7 @@ function Timer({ navigation, route }) {
   const [pauseStatus, setPauseStatus] = useState(false)
 
   useEffect(()=>{
-      let seconds = item.time;
+      console.log(time)
   },[])
 
   return (
