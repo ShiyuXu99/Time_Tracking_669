@@ -47,7 +47,7 @@ class DataModel {
 
     async addItem(item) {
         const trackingListRef = collection(db, 'TrackingList');
-        let newItemDocRef = await addDoc(trackingListRef, item);
+        await addDoc(trackingListRef, item);
         this.updateSubscribers();
     }
 
@@ -62,6 +62,11 @@ class DataModel {
         const docRef = doc(db, 'TrackingList', key);
         await deleteDoc(docRef);
         this.updateSubscribers();
+    }
+
+    async updateItem (key, newItem) {
+      const docRef = doc(db, "TrackingList", key);
+      await updateDoc(docRef, newItem);
     }
 
     getItem(key) {
