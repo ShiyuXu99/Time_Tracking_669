@@ -9,6 +9,7 @@ import AddActivity from './Components/AddActivity';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
+import TaskDetail from './Components/TaskDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -80,6 +81,7 @@ export default function App() {
             component={HomeScreenStack} 
             options={{ title: 'Time_Tracking_669' }}/>
         <Stack.Screen name="Timer" component={Timer} />
+        <Stack.Screen name="TaskDetail" component={TaskDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
