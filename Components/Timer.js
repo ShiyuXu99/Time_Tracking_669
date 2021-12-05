@@ -63,7 +63,7 @@ function Timer({ navigation, route }) {
           onPress={() => {
             let tempTime = hours*3600 + minutes*60 + seconds;
             console.log(tempTime)
-            dataModel.updateTime(item.key, {text: item.text, time: tempTime});
+            dataModel.updateTime(item.key, {text: item.text, time: tempTime, icon: item.icon, color: item.color});
             navigation.navigate("Home");
           }}
         >
