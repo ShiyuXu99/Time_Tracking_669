@@ -29,68 +29,72 @@ function HomeScreen({ navigation }) {
 
     return (
   
-        <View style={styles.container}>
-            <View style={styles.uppderContainer}>
+      <View style={styles.container}>
+        <View style={styles.uppderContainer}>
 
-            </View>
+        </View>
 
-            <View style={styles.listContainer}>
+        <View style={styles.listContainer}>
 
 
-            <SwipeListView
-                    data={trackingList}
-                    renderItem={ ({item}) =>  (
-                      console.log(item.color),
-                      console.log(item.icon),
-                      <View style={styles.listItem}>
-                          <View style={styles.listItemContainer}>
+          <SwipeListView
+            data={trackingList}
+            renderItem={ ({item}) =>  (
+              <View style={styles.listItem}>
+                  <View style={styles.listItemContainer}>
 
-                            <View style={styles.categoryContainer}>
-                                <View style={{
-                                  display: 'flex',
-                                  justifyContent:'center',
-                                  alignItems: 'center',
-                                  width: 50,
-                                  height: 50,
-                                  borderRadius: 50,
-                                  backgroundColor: item.color,
-                                }}>
-                                  <Icon name={item.icon}
-                                    type='ionicon'
-                                    color='white'
-                                  />
-                                </View>
-                              </View>
-        
-                              <View>
-                                  <Text style={styles.listItemText}>{item.text}</Text>
-                                  <View style={styles.timeContainer}>
+                    <View style={styles.categoryContainer}>
+                      <View style={{
+                        display: 'flex',
+                        justifyContent:'center',
+                        alignItems: 'center',
+                        width: 50,
+                        height: 50,
+                        borderRadius: 50,
+                        backgroundColor: item.color,
+                      }}>
+                        <Icon name={item.icon}
+                          type='ionicon'
+                          color='white'
+                        />
+                      </View>
+                    </View>
 
-                                    <Text style={styles.timeText}>{getTime(item.time)}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
+                    <TouchableOpacity
+                      onPress={() => {
+                        navigation.navigate("TaskDetail", {
+                          task: item
+                      });
+                    }}>
+                      <View>
+                          <Text style={styles.listItemText}>{item.text}</Text>
+                          <View style={styles.timeContainer}>
 
-                                  </View>
-                              </View>
+                            <Text style={styles.timeText}>{getTime(item.time)}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
 
-                              <View style={styles.iconContainer}>
-                                <View style={styles.play}>
-                                  <Icon name='play'
-                                    type='feather'
-                                    color='black'
-                                    onPress={() => {
-                                      navigation.navigate("Timer", {
-                                          item: item
-                                      });
-                                    }}
-                                  />
-                                </View>
-                              </View>
                           </View>
                       </View>
-                  )
-                  }
+                    </TouchableOpacity>
+
+                      <View style={styles.iconContainer}>
+                        <View style={styles.play}>
+                          <Icon name='play'
+                            type='feather'
+                            color='black'
+                            onPress={() => {
+                              navigation.navigate("Timer", {
+                                  item: item
+                              });
+                            }}
+                          />
+                        </View>
+                      </View>
+                  </View>
+                </View>
+            )}
             renderHiddenItem={ ({item}, rowMap) => (
-                <View style={styles.deleteContainer}>
-                  <View style={styles.delete}>
+              <View style={styles.deleteContainer}>
+                <View style={styles.delete}>
                   <TouchableOpacity
                   onPress={() => {
                     dataModel.deleteItem(item.key);
@@ -100,56 +104,14 @@ function HomeScreen({ navigation }) {
                         color='white'
                     />
                   </TouchableOpacity>
-                    </View>
                 </View>
+              </View>
             )}
-            rightOpenValue={-75}
-        />
-
-{/* 
-                <FlatList
-                    contentContainerStyle={styles.listContentContainer}
-                    data={list}
-                    renderItem={({ item }) => {
-                        return (
-                            <View style={styles.listItem}>
-                                <View style={styles.listItemContainer}>
-
-                
-                                    <View>
-                                        <Text style={styles.listItemText}>{item.Title}</Text>
-                                        <View style={styles.timeContainer}>
-                                          <Text>{item.Time}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
-                                        </View>
-                                    </View>
-
-                                    <View style={styles.iconContainer}>
-                                        <Text>
-                                            <Icon name='play'
-                                             type='feather'
-                                              color='black'
-                                              onPress={() => {
-                                                navigation.navigate("Timer");
-                                            }}
-                                              />
-                                        </Text>
-                                    </View>
-                                </View>
-                            
-                            </View>
-                        );
-                    }}
-                /> */}
-            </View>
-
-            {/* <View style={styles.navbarContainer}>
-
-            </View> */}
+          rightOpenValue={-120}/>
 
         </View>
-
-    )
-
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -227,7 +189,7 @@ const styles = StyleSheet.create({
     },
     delete: {
       display:'flex',
-      flex: 0.25,
+      flex: 0.3,
       backgroundColor:'#5258E4',
       justifyContent:'center',
       borderRadius: 10,
