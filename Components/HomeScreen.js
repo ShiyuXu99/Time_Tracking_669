@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { Button } from 'react-native-elements';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, TouchableHighlight } from 'react-native';
 import { BottomSheet, ListItem, CheckBox } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -10,15 +9,10 @@ import { getDataModel } from './DataModel';
 
 
 function HomeScreen({ navigation }) {
-    // const list = [{'Title': 'Homework', 'Time' : '30min'}, {'Title': 'Debug', 'Time' : '30min'},  
-    // {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'},  {'Title': 'Debug', 'Time' : '30min'}]
-    // const colorList = ['red','green', 'blue']
 
   const dataModel = getDataModel();
   const [trackingList, setTrackingList] = useState(dataModel.getTrackingListCopy());
-  // const rightButtons = [
-  //       <TouchableHighlight><Text>Delete</Text></TouchableHighlight>,
-  //   ];
+
   let getTime = (time)=>{
       let date = new Date(null);
       date.setSeconds(time); // specify value for SECONDS here
@@ -46,13 +40,32 @@ function HomeScreen({ navigation }) {
             <SwipeListView
                     data={trackingList}
                     renderItem={ ({item}) =>  (
+                      console.log(item.color),
+                      console.log(item.icon),
                       <View style={styles.listItem}>
                           <View style={styles.listItemContainer}>
+
+                            <View style={styles.categoryContainer}>
+                                <View style={{
+                                  display: 'flex',
+                                  justifyContent:'center',
+                                  alignItems: 'center',
+                                  width: 50,
+                                  height: 50,
+                                  borderRadius: 50,
+                                  backgroundColor: item.color,
+                                }}>
+                                  <Icon name={item.icon}
+                                    type='ionicon'
+                                    color='white'
+                                  />
+                                </View>
+                              </View>
         
                               <View>
                                   <Text style={styles.listItemText}>{item.text}</Text>
                                   <View style={styles.timeContainer}>
-                                    <Text>{getTime(item.time)}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
+                                    <Text style={styles.timeText}>{getTime(item.time)}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
                                   </View>
                               </View>
 
@@ -73,13 +86,18 @@ function HomeScreen({ navigation }) {
                       </View>
                   )
                   }
-            renderHiddenItem={ (data, rowMap) => (
+            renderHiddenItem={ ({item}, rowMap) => (
                 <View style={styles.deleteContainer}>
                   <View style={styles.delete}>
+                  <TouchableOpacity
+                  onPress={() => {
+                    dataModel.deleteItem(item.key);
+                  }}>
                     <Icon name='trash'
                       type='feather'
                         color='white'
                     />
+                  </TouchableOpacity>
                     </View>
                 </View>
             )}
@@ -180,25 +198,23 @@ const styles = StyleSheet.create({
       },
       timeContainer: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        width: '45%',
+        display: 'flex',
+        justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: 10,
       },
       timeText: {
-        fontSize: 12,
+        fontSize: 14,
         color: '#4F4F4F',
-
       },
       navbarContainer: {
         flex: 1,
         width:'100%',
-        // backgroundColor: 'blue',
     },
     iconContainer: {
         display:'flex',
         flexDirection: 'row',
-        // paddingTop: 10,
-        // height: 40,
         alignItems: 'center',
     },
     deleteContainer: {
@@ -217,6 +233,14 @@ const styles = StyleSheet.create({
     play: {
       display:'flex',
       justifyContent:'center',
+    },
+    categoryContainer: {
+      width: '20%',
+      height: '100%',
+      borderRadius: 40,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
 
  
