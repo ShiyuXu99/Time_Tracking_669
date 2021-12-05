@@ -5,6 +5,8 @@ import HomeScreen from './Components/HomeScreen';
 import Timer from './Components/Timer';
 import DataPage from './Components/DataPage';
 import AddActivity from './Components/AddActivity';
+import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View } from 'react-native';
@@ -77,9 +79,13 @@ export default function App() {
   }}>
         <Stack.Screen 
             name="Home" 
-            component={HomeScreenStack} 
+            // component={HomeScreenStack}
+            component={HomeScreenStack}
             options={{ title: 'Time_Tracking_669' }}/>
         <Stack.Screen name="Timer" component={Timer} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
