@@ -68,7 +68,7 @@ function HomeScreen({ navigation }) {
 
                                     <Text style={styles.timeText}>{getTime(item.time)}</Text>
                                       <Icon name='edit-3' type='feather' color='#4F4F4F'
-                                            size='16'
+                                            size= {16}
                                             onPress={() => {
                                                 navigation.navigate("SignUp");
                                             }}

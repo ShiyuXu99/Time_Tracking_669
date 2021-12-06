@@ -71,7 +71,6 @@ function Timer({ navigation, route }) {
         </TouchableOpacity>
       </View>
     </View>
-
   )
 
 }

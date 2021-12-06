@@ -26,6 +26,8 @@ export default function Login({ navigation }) {
                         style={styles.TextInput}
                         placeholder="Email"
                         placeholderTextColor="grey"
+                        autoCapitalize='none'
+                        spellCheck={false}
                         onChangeText={(email) => setEmail(email)}
                     />
                 </View>
@@ -35,6 +37,8 @@ export default function Login({ navigation }) {
                         placeholder="Password"
                         placeholderTextColor="grey"
                         secureTextEntry={true}
+                        autoCapitalize='none'
+                        spellCheck={false}
                         onChangeText={(password) => setPassword(password)}
                     />
                 </View>
@@ -42,8 +46,13 @@ export default function Login({ navigation }) {
                     <Text style={styles.loginText}>LOGIN</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
-                    <Text style={styles.forgot_button}>Don't have an account? Sign up</Text>
+
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate("SignUp");
+                }
+                }>
+                    <Text style={styles.forgot_button}>Don't have an account? Sign Up!
+                    </Text>
                 </TouchableOpacity>
             </View>
 
@@ -103,7 +112,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 40,
-        backgroundColor: "purple",
+        backgroundColor: "#E8EAFE",
         marginBottom:15
     },
 });

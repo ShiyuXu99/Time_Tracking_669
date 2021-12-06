@@ -26,6 +26,8 @@ export default function SignUp({ navigation }) {
                         style={styles.TextInput}
                         placeholder="Email"
                         placeholderTextColor="grey"
+                        autoCapitalize='none'
+                        spellCheck={false}
                         onChangeText={(email) => setEmail(email)}
                     />
                 </View>
@@ -36,6 +38,8 @@ export default function SignUp({ navigation }) {
                         placeholder="Password"
                         placeholderTextColor="grey"
                         secureTextEntry={true}
+                        autoCapitalize='none'
+                        spellCheck={false}
                         onChangeText={(password) => setPassword(password)}
                     />
                 </View>
@@ -43,20 +47,19 @@ export default function SignUp({ navigation }) {
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.TextInput}
-                        placeholder="Password"
+                        placeholder="Confirm Password"
                         placeholderTextColor="grey"
                         secureTextEntry={true}
+                        autoCapitalize='none'
+                        spellCheck={false}
                         onChangeText={(password) => setPassword(password)}
                     />
                 </View>
 
                 <TouchableOpacity style={styles.loginBtn}>
-                    <Text style={styles.loginText}>LOGIN</Text>
+                    <Text style={styles.loginText}>Create Account</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
-                    <Text style={styles.forgot_button}>Don't have an account? Sign up</Text>
-                </TouchableOpacity>
             </View>
 
         </View>
@@ -79,7 +82,8 @@ const styles = StyleSheet.create({
     },
     headerText: {
         fontSize: 40,
-        color:'#a9a9a9'
+        color:'#8962F8',
+        fontWeight: 'bold',
     },
     inputCell: {
         flex:0.55,
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 40,
-        backgroundColor: "purple",
+        backgroundColor: "#E8EAFE",
         marginBottom:15
     },
 });
