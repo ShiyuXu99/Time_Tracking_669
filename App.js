@@ -11,6 +11,7 @@ import SignUp from "./Components/SignUp";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
+import TaskDetail from './Components/TaskDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -86,6 +87,7 @@ export default function App() {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
 
+        <Stack.Screen name="TaskDetail" component={TaskDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
