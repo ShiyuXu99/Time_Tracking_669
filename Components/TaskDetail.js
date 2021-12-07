@@ -30,10 +30,18 @@ function TaskDetail({ navigation, route }) {
 
   let handleTime = ()=>{
       let timeL = timeStr.split(':')
-      let hour = timeL[0];
-      let min = timeL[1];
-      let sec = timeL[2]
-      return hour*2600 + min*60 + sec;
+      for (let i = 0; i < timeL.length; i++){
+          if(timeL[i] === '00'){
+              timeL[i] = 0;
+          }
+          else{
+              timeL[i] = parseInt(timeL[i],10);
+          }
+      }
+      // let hour = timeL[0];
+      // let min = timeL[1];
+      // let sec = timeL[2]
+      return timeL[0]*3600 + timeL[1]*60 + timeL[2];
   }
 
     useEffect(()=>{
@@ -105,8 +113,6 @@ function TaskDetail({ navigation, route }) {
           <TouchableOpacity
             style={styles.button1}
             onPress={() => {
-                console.log(item.key)
-                console.log(handleTime())
               dataModel.updateItem(item.key, {text: inputText, time: handleTime(), color: color, icon: icon});
               navigation.navigate("Home");
           }}>

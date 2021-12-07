@@ -16,6 +16,7 @@ function HomeScreen({ navigation }) {
       let date = new Date(null);
       date.setSeconds(time); // specify value for SECONDS here
       let result = date.toISOString().substr(11, 8);
+      console.log(result)
       return result;
   }
   useEffect(()=>{

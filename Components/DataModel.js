@@ -76,7 +76,6 @@ class DataModel {
         let path = auth.currentUser.email + ' TrackingList'
 
         const trackingListRef = doc(db, path, key);
-        console.log(key + newItem)
         let docRef = await setDoc(trackingListRef, newItem);
         this.updateSubscribers();
     }

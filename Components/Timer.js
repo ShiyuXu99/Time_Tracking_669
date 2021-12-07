@@ -45,7 +45,7 @@ function Timer({ navigation, route }) {
           </View>
 
           <Text style={styles.timeText}>
-            {days}:{hours}:{minutes}:{seconds}
+            {hours}:{minutes}:{seconds}
           </Text>
       </View>
 
