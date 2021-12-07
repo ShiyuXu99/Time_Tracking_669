@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, TouchableHighlight } from 'react-native';
-import { BottomSheet, ListItem, CheckBox } from 'react-native-elements';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 // import { MaterialIcons as Icon } from '@expo/vector-icons';
 import { Icon } from 'react-native-elements'
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -70,7 +69,7 @@ function HomeScreen({ navigation }) {
                           <Text style={styles.listItemText}>{item.text}</Text>
                           <View style={styles.timeContainer}>
 
-                            <Text style={styles.timeText}>{getTime(item.time)}</Text><Icon name='edit-3' type='feather' color='#4F4F4F' size='16'/>
+                            <Text style={styles.timeText}>{getTime(item.time)}</Text><Icon name='edit-3' type='feather' size='16' color='#4F4F4F' />
 
                           </View>
                       </View>

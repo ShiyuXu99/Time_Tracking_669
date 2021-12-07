@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Button } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Button, Image } from "react-native";
 import { useStopwatch } from 'react-timer-hook';
 import { getDataModel } from './DataModel';
 
@@ -28,23 +28,25 @@ function Timer({ navigation, route }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {/* <Button
-        title="Press me"
-        onPress={() => Alert.alert('Simple Button pressed')}
-      /> */}
-        <Button
-          onPress={() => {
-            navigation.navigate("Home");
-          }}
-          title="Go Back"
-          color="black"
-        />
+        <View style={styles.headerText}>
+          {/*<Button*/}
+          {/*    onPress={() => {*/}
+          {/*      navigation.navigate("Home");*/}
+          {/*    }}*/}
+          {/*    title=" Go Back"*/}
+          {/*    color="black"*/}
+          {/*/>*/}
+        </View>
       </View>
 
       <View style={styles.timeCell}>
-        <Text style={{ fontSize: 40 }}>
-        {days}:{hours}:{minutes}:{seconds} 
-        </Text>
+          <View style={styles.imageCell}>
+            <Image style={styles.imageCell} source={require('./image/loop.gif')} />
+          </View>
+
+          <Text style={styles.timeText}>
+            {days}:{hours}:{minutes}:{seconds}
+          </Text>
       </View>
 
       <View style={styles.buttonCell}>
@@ -55,7 +57,7 @@ function Timer({ navigation, route }) {
             setPauseStatus(!pauseStatus);
           }}
         >
-          <Text>{pauseStatus? 'Restart':'Pause'}</Text>
+          <Text>{pauseStatus? 'Start':'Pause'}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -87,17 +89,21 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'column',
     flex: 0.1,
-    backgroundColor: 'blue',
     justifyContent: 'flex-end',
+  },
+  headerText: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
   timeCell: {
     flex: 0.5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonCell: {
     flex: 0.4,
     alignItems: 'center',
     paddingTop: '10%',
-
   },
   button: {
     alignItems: "center",
@@ -115,6 +121,16 @@ const styles = StyleSheet.create({
     width: '60%',
     marginBottom: '10%',
     borderRadius: 10,
+  },
+  timeText: {
+    marginTop: '5%',
+    fontSize: 50,
+  },
+  imageCell: {
+    flex: 1,
+    width:'80%',
+    paddingLeft: '10%'
+
   }
 
 

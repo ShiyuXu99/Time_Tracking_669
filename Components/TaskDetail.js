@@ -14,8 +14,10 @@ function TaskDetail({ navigation, route }) {
   const [inputText, setInputText] = useState(item.text);
   const [color, setColor] = useState(item.color);
   const [icon, setIcon] = useState(item.icon);
-  const [time, setTime] = useState(item.time);
-  console.log(time);
+  // const [hour, setHour] = useState('');
+  // const [min, setMin] = useState('');
+  // const [sec, setSec] = useState('');
+  const [timeStr, setTimeStr] = useState(item.time)
 
   let dataModel = getDataModel();
 
@@ -23,9 +25,21 @@ function TaskDetail({ navigation, route }) {
     let date = new Date(null);
     date.setSeconds(time); // specify value for SECONDS here
     let result = date.toISOString().substr(11, 8);
-    return result;
+      return result;
   }
 
+  let handleTime = ()=>{
+      let timeL = timeStr.split(':')
+      let hour = timeL[0];
+      let min = timeL[1];
+      let sec = timeL[2]
+      return hour*2600 + min*60 + sec;
+  }
+
+    useEffect(()=>{
+        let temTime = getTime(item.time);
+        setTimeStr(temTime)
+    },[])
 
   return (
       <View style={styles.container}>
@@ -43,10 +57,10 @@ function TaskDetail({ navigation, route }) {
 
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Time</Text>
-            <Input  style={styles.inputText}
-              placeholder=" Entern the time"
-              onChangeText={(time)=>setTime(time)}
-              value={getTime(time)}
+            <Input style={styles.inputText}
+              placeholder=" Enter time in 00:00:00"
+                   onChangeText={(time)=>setTimeStr(time)}
+                   value={timeStr}
             />
           </View>
 
@@ -91,7 +105,9 @@ function TaskDetail({ navigation, route }) {
           <TouchableOpacity
             style={styles.button1}
             onPress={() => {
-              dataModel.updateItem(item.key, {text: inputText, time: time, color: color, icon: icon});
+                console.log(item.key)
+                console.log(handleTime())
+              dataModel.updateItem(item.key, {text: inputText, time: handleTime(), color: color, icon: icon});
               navigation.navigate("Home");
           }}>
             <Text style={styles.buttonText}>Confirm</Text>

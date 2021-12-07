@@ -75,15 +75,15 @@ export function HomeScreenStack() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{
+      <Stack.Navigator initialRouteName="Login" screenOptions={{
     headerShown: false
   }}>
         <Stack.Screen 
             name="Home" 
-            // component={HomeScreenStack}
             component={HomeScreenStack}
             options={{ title: 'Time_Tracking_669' }}/>
         <Stack.Screen name="Timer" component={Timer} />
+
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
 

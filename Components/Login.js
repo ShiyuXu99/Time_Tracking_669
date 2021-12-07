@@ -9,11 +9,36 @@ import {
     Button,
     TouchableOpacity,
 } from "react-native";
+import {login, logout} from './DataModel'
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    async function handleLogin() {
+        // try {
+        //     await login(emailRef.current.value, passwordRef.current.value);
+        // } catch {
+        //     alert("Error!");
+        // }
+        // setLoading(false);
+        try {
+            await login(email, password);
+            alert("logged In")
+            navigation.navigate('Home');
+        } catch {
+            alert("Error Loggin in!");
+        }
+    }
+
+    async function handleLogout() {
+        // try {
+        //     await logout();
+        // } catch {
+        //     alert("Error!");
+        // }
+        await logout();
+    }
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -42,7 +67,9 @@ export default function Login({ navigation }) {
                         onChangeText={(password) => setPassword(password)}
                     />
                 </View>
-                <TouchableOpacity style={styles.loginBtn}>
+                <TouchableOpacity
+                    onPress={handleLogin}
+                    style={styles.loginBtn}>
                     <Text style={styles.loginText}>LOGIN</Text>
                 </TouchableOpacity>
 
@@ -52,6 +79,14 @@ export default function Login({ navigation }) {
                 }
                 }>
                     <Text style={styles.forgot_button}>Don't have an account? Sign Up!
+                    </Text>
+                </TouchableOpacity>
+
+
+                <TouchableOpacity onPress={
+                    logout
+                }>
+                    <Text >LogOUt
                     </Text>
                 </TouchableOpacity>
             </View>
