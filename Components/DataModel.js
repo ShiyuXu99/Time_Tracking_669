@@ -24,6 +24,14 @@ export async function login(email, password) {
     // }
 }
 
+export async function signup(email, password) {
+    try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    } catch {
+        alert("Error!");
+    }
+}
+
 export async function logout(){
     try {
         await signOut(auth)

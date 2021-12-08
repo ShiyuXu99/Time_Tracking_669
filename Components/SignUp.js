@@ -9,10 +9,22 @@ import {
     Button,
     TouchableOpacity,
 } from "react-native";
+import {login, signup} from './DataModel'
+
 
 export default function SignUp({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    let handleSignUp = async ()=>{
+        try {
+            await signup(email, password);
+            alert("Signed Up")
+            navigation.navigate('Home');
+        } catch {
+            alert("Error signing up!");
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -52,11 +64,14 @@ export default function SignUp({ navigation }) {
                         secureTextEntry={true}
                         autoCapitalize='none'
                         spellCheck={false}
-                        onChangeText={(password) => setPassword(password)}
+                        onChangeText={(password) => setConfirmPassword(password)}
                     />
                 </View>
 
-                <TouchableOpacity style={styles.loginBtn}>
+                <TouchableOpacity
+                    style={styles.loginBtn}
+                    onPress={handleSignUp}
+                >
                     <Text style={styles.loginText}>Create Account</Text>
                 </TouchableOpacity>
 
