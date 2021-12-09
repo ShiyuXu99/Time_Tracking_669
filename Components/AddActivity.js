@@ -81,7 +81,7 @@ function AddActivity({ navigation }) {
               onPress={() => {
                 dataModel.addItem({text: inputText, time: 0, color: color, icon: icon, label: iconLabel});
                 setInputText('');
-                setIcon('game-controller-outline');
+                setIcon('desktop-outline');
                 navigation.navigate("Home");
             }}>
               <Text style={styles.buttonText}>Add</Text>
@@ -91,7 +91,7 @@ function AddActivity({ navigation }) {
               style={styles.button2}
               onPress={() => {
                 setInputText('');
-                setIcon('game-controller-outline');
+                setIcon('desktop-outline');
                 navigation.navigate("Home");
             }}>
             <Text style={styles.buttonText}>Cancel</Text>
