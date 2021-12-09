@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         color:'black',
         fontWeight: '500',
         letterSpacing: 0.5,
-        marginBottom: 40,
+        paddingBottom: 40,
     },
     inputCell: {
         height:'50%',
