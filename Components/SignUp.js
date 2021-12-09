@@ -37,7 +37,7 @@ export default function SignUp({ navigation }) {
                     <TextInput
                         style={styles.TextInput}
                         placeholder="Email"
-                        placeholderTextColor="grey"
+                        placeholderTextColor="#979BF0"
                         autoCapitalize='none'
                         spellCheck={false}
                         onChangeText={(email) => setEmail(email)}
@@ -48,7 +48,7 @@ export default function SignUp({ navigation }) {
                     <TextInput
                         style={styles.TextInput}
                         placeholder="Password"
-                        placeholderTextColor="grey"
+                        placeholderTextColor="#979BF0"
                         secureTextEntry={true}
                         autoCapitalize='none'
                         spellCheck={false}
@@ -60,7 +60,7 @@ export default function SignUp({ navigation }) {
                     <TextInput
                         style={styles.TextInput}
                         placeholder="Confirm Password"
-                        placeholderTextColor="grey"
+                        placeholderTextColor="#979BF0"
                         secureTextEntry={true}
                         autoCapitalize='none'
                         spellCheck={false}
@@ -86,32 +86,33 @@ const styles = StyleSheet.create({
         flex: 1,
         height:'100%',
         alignItems: "center",
-        // justifyContent: "center",
+        justifyContent: "center",
         flexDirection:'column'
     },
 
     header: {
-        flex: 0.22,
-        height:'100%',
-        justifyContent:'flex-end',
+        height:'10%',
+        justifyContent:'center',
     },
     headerText: {
         fontSize: 40,
-        color:'#8962F8',
-        fontWeight: 'bold',
+        color:'black',
+        fontWeight: '500',
+        letterSpacing: 0.5,
+        marginBottom: 40,
     },
     inputCell: {
-        flex:0.55,
+        height:'50%',
         width:'100%',
         alignItems:'center',
-        justifyContent:'flex-end',
+        justifyContent:'center',
     },
     inputView: {
         borderRadius: 5,
         borderWidth: 2,
-        borderColor: '#D3D3D3',
+        borderColor: '#979BF0',
         width: "70%",
-        height: "14%",
+        height: "15%",
         marginBottom: 20,
     },
 
@@ -119,7 +120,10 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         marginLeft: 5,
-        fontSize: 18
+        fontSize: 18,
+        color: 'black',
+        fontWeight: '500',
+        letterSpacing: 0.5,
     },
     //
     // forgot_button: {
@@ -129,12 +133,19 @@ const styles = StyleSheet.create({
 
     loginBtn: {
         width: "70%",
-        borderRadius: 5,
-        height: 50,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 40,
-        backgroundColor: "#E8EAFE",
-        marginBottom:15
+        marginTop: 20,
+        backgroundColor: "#6F6FF8",
+        marginBottom:20,
+        backgroundColor: "#6F6FF8",
+        padding: 20,
     },
+    loginText: {
+        fontSize: 18,
+        color: 'white',
+        fontWeight: '500',
+        letterSpacing: 0.5,
+      },
 });
