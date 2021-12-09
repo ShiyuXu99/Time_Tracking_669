@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, TouchableHighlight } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, TouchableHighlight, Image } from 'react-native';
 
 // import { MaterialIcons as Icon } from '@expo/vector-icons';
 import { Icon } from 'react-native-elements'
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { getDataModel } from './DataModel';
+import { logout } from './DataModel'
 
 
 function HomeScreen({ navigation }) {
 
   const dataModel = getDataModel();
   const [trackingList, setTrackingList] = useState(dataModel.getTrackingListCopy());
+  
 
   let getTime = (time)=>{
       let date = new Date(null);
@@ -31,8 +33,22 @@ function HomeScreen({ navigation }) {
   
       <View style={styles.container}>
         <View style={styles.uppderContainer}>
+          <View style={styles.imageCell}>
+            <Text style={styles.helloText}>Let's track your day!</Text>
+          </View>
+
+          <View style={styles.logoutCell}>
+            <Image style={styles.image} source={require('./image/cat3.gif')} />
+              <TouchableOpacity onPress={() => {
+                logout;
+                navigation.navigate("Login");}}>
+                <Icon name='log-out' type='feather' size='24' color='black'/>
+                {/* <Text style={styles.logoutText}>Log Out</Text> */}
+              </TouchableOpacity>
+          </View>
 
         </View>
+
 
         <View style={styles.listContainer}>
 
@@ -67,12 +83,17 @@ function HomeScreen({ navigation }) {
                       });
                     }}>
                       <View>
-                          <Text style={styles.listItemText}>{item.text}</Text>
-                          <View style={styles.timeContainer}>
+                        <Text style={styles.listItemText}>{item.text}</Text>
+                        <View style={styles.timeContainer}>
 
-                            <Text style={styles.timeText}>{getTime(item.time)}</Text><Icon name='edit-3' type='feather' size='16' color='#4F4F4F' />
-
+                          <View style={styles.timeIcon}>
+                            <Icon name='clock' type='feather' size='16' color='#4F4F4F' />
                           </View>
+                          <View style={styles.timeTextCell}>
+                            <Text style={styles.timeText}>{getTime(item.time)}</Text>
+                          </View>
+
+                        </View>
                       </View>
                     </TouchableOpacity>
 
@@ -110,6 +131,7 @@ function HomeScreen({ navigation }) {
           rightOpenValue={-120}/>
 
         </View>
+
     </View>
   )
 }
@@ -123,12 +145,55 @@ const styles = StyleSheet.create({
       fontFamily: 'Rubik',
     },
     uppderContainer: {
-        flex: 2,
+        flex: 1.5,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'space-around',
         width:'100%',
-        // backgroundColor: 'red',
+        paddingHorizontal: 30,
+    },
+    imageCell: {
+      flex: 8,
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+    },
+    image: {
+      width: '60%',
+      height: '70%',
+    },
+    logout: {
+      display: 'flex',
+      width: '100%',
+      height: '100%',
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      backgroundColor: 'blue',
+    },
+    logoutText: {
+      fontWeight: '500',
+      fontSize: 18,
+    },
+    helloText: {
+      fontWeight: '500',
+      fontSize: 24,
+      letterSpacing: 0.5,
+    },
+    logoutCell: {
+      flex: 2,
+      width: '100%',
+      height: '100%',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      // backgroundColor:'grey',
+      height: '100%',
     },
     listContainer: {
-        flex: 7,
+        flex: 8,
         paddingHorizontal: 30,
         width: '100%',
         flexDirection: 'column',
@@ -168,6 +233,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 10,
       },
+      timeIcon: {
+        marginRight: 5,
+      },
       timeText: {
         fontSize: 14,
         color: '#4F4F4F',
@@ -206,6 +274,15 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    imageContainer: {
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      justifyContent: 'space-around',
+      width:'100%',
+      height: '100%',
+  },
 
  
   });
