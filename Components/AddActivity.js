@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import { Input } from 'react-native-elements';
 import { getDataModel } from './DataModel';
-import { Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
 
 
 function AddActivity({ navigation }) {
 
 
-  const icons = {dict: {'game-controller-outline': '#B47CFC', 'desktop-outline': '#F78F8A', 'barbell-outline': '#5EA8EC', 'paw-outline': '#4AC2AA', 'color-palette-outline': '#FCC089',
-  'bed-outline': '#F46972', 'restaurant-outline': '#D0DD84', 'library-outline': '#7AD3DA', 'people-outline': '#DEBD9C', 'ellipsis-horizontal-outline': '#CDCDCD',}}
+  const icons = {dict: {'desktop-outline': ['#F78F8A', 'Work'], 'game-controller-outline': ['#B47CFC', 'Game'], 'barbell-outline': ['#5EA8EC', 'Workout'], 'paw-outline': ['#4AC2AA', 'Pet'], 'color-palette-outline': ['#FCC089', 'Art'],
+  'bed-outline': ['#F46972', 'Sleep'], 'restaurant-outline': ['#D0DD84', 'Food'], 'library-outline': ['#7AD3DA', 'Study'], 'people-outline': ['#DEBD9C', 'Social'], 'ellipsis-horizontal-outline': ['#CDCDCD','Others']}}
 
   const [inputText, setInputText] = useState('');
   const [color, setColor] = useState(icons.dict['game-controller-outline']);
   const [icon, setIcon] = useState('game-controller-outline');
+  const [iconLabel, setIconLabel] = useState('Work');
 
 
   
@@ -26,10 +27,13 @@ function AddActivity({ navigation }) {
 
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Task</Text>
-              <Input  style={styles.inputText}
+              < Input  style={styles.inputText}
                 placeholder=" Add new task"
+                placeholderTextColor='#B7B7B7'
                 onChangeText={(text)=>setInputText(text)}
+                inputContainerStyle={styles.underline}
                 value={inputText}
+                inputStyle={styles.inputText}
               />
             </View>
 
@@ -43,7 +47,8 @@ function AddActivity({ navigation }) {
                               <TouchableOpacity
                                 onPress={() => {
                                   setIcon(item);
-                                  setColor(icons.dict[item])}}
+                                  setColor(icons.dict[item][0]);
+                                  setIconLabel(icons.dict[item][1])}}
                                 style={{
                                   display: 'flex',
                                   justifyContent:'center',
@@ -52,7 +57,7 @@ function AddActivity({ navigation }) {
                                   height: 55,
                                   borderRadius: 55,
                                   borderWidth: 5,
-                                  backgroundColor: icons.dict[item],
+                                  backgroundColor: icons.dict[item][0],
                                   borderColor: item===icon?'#6F6FF8': 'white',
                                 }}>
                                 <Icon name={item}
@@ -60,6 +65,7 @@ function AddActivity({ navigation }) {
                                     color='white'
                                   />
                               </TouchableOpacity>
+                                <Text style={styles.iconLabel}>{icons.dict[item][1]}</Text>
                           </View>
                       ))
                   }
@@ -73,7 +79,7 @@ function AddActivity({ navigation }) {
             <TouchableOpacity
               style={styles.button1}
               onPress={() => {
-                dataModel.addItem({text: inputText, time: 0, color: color, icon: icon});
+                dataModel.addItem({text: inputText, time: 0, color: color, icon: icon, label: iconLabel});
                 setInputText('');
                 setIcon('game-controller-outline');
                 navigation.navigate("Home");
@@ -108,7 +114,7 @@ const styles = StyleSheet.create({
   },
   activityContainer: {
     marginTop: 60,
-    flex: 2,
+    flex: 2.5,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -116,6 +122,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+    height: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -132,8 +139,17 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   inputText: {
-   fontSize: 18,
+    paddingHorizontal: 5,
+    fontSize: 18,
+    fontWeight: '500',
+    letterSpacing: 0.5,
   },
+  underline: {
+    borderColor: '#FFFFFF',
+    borderRadius: 15,
+    padding: 10,
+    backgroundColor: '#F6F6F6'
+   },
   label: {
     paddingLeft: 10,
     paddingBottom: 20,
@@ -146,7 +162,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#6F6FF8",
     padding: 20,
     width: '40%',
-    marginBottom: '10%',
     borderRadius: 10,
   },
   button2: {
@@ -154,7 +169,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#B7B7B7",
     padding: 20,
     width: '40%',
-    marginBottom: '10%',
     borderRadius: 10,
   },
   buttonText: {
@@ -180,12 +194,19 @@ const styles = StyleSheet.create({
 
   },
   colorCell: {
-    width: '20%',
-    height: '100%',
+    width: '25%',
+    marginBottom: 15,
     borderRadius: 40,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  iconLabel: {
+    fontSize: 12,
+    color: 'black',
+    fontWeight: '500',
+    letterSpacing: 0.5,
+    marginTop:5,
   }
 
 
