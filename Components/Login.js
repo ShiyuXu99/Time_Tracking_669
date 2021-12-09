@@ -50,7 +50,7 @@ export default function Login({ navigation }) {
                     <TextInput
                         style={styles.TextInput}
                         placeholder="Email"
-                        placeholderTextColor="grey"
+                        placeholderTextColor='#979BF0'
                         autoCapitalize='none'
                         spellCheck={false}
                         onChangeText={(email) => setEmail(email)}
@@ -60,7 +60,7 @@ export default function Login({ navigation }) {
                     <TextInput
                         style={styles.TextInput}
                         placeholder="Password"
-                        placeholderTextColor="grey"
+                        placeholderTextColor='#979BF0'
                         secureTextEntry={true}
                         autoCapitalize='none'
                         spellCheck={false}
@@ -83,12 +83,6 @@ export default function Login({ navigation }) {
                 </TouchableOpacity>
 
 
-                <TouchableOpacity onPress={
-                    logout
-                }>
-                    <Text >LogOUt
-                    </Text>
-                </TouchableOpacity>
             </View>
 
         </View>
@@ -100,18 +94,21 @@ const styles = StyleSheet.create({
         flex: 1,
         height:'100%',
         alignItems: "center",
-        // justifyContent: "center",
-        flexDirection:'column'
+        flexDirection:'column',
+        fontFamily: 'Rubik',
     },
 
     header: {
-        flex: 0.3,
+        flex: 0.35,
         height:'100%',
         justifyContent:'flex-end',
     },
     headerText: {
         fontSize: 40,
-        color:'#a9a9a9'
+        color:'black',
+        fontWeight: '500',
+        letterSpacing: 0.5,
+        marginBottom: 40,
     },
     inputCell: {
         flex:0.4,
@@ -122,7 +119,7 @@ const styles = StyleSheet.create({
     inputView: {
         borderRadius: 5,
         borderWidth: 2,
-        borderColor: '#D3D3D3',
+        borderColor: '#979BF0',
         width: "70%",
         height: "20%",
         marginBottom: 20,
@@ -132,22 +129,33 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         marginLeft: 5,
-        fontSize: 18
+        fontSize: 18,
+        color: 'black',
+        fontWeight: '500',
+        letterSpacing: 0.5,
     },
-    //
-    // forgot_button: {
-    //     height: 30,
-    //     marginBottom: 30,
-    // },
+    
+    forgot_button: {
+        marginTop: 20,
+        fontWeight: '500',
+        fontSize: 14,
+    },
 
     loginBtn: {
         width: "70%",
-        borderRadius: 5,
-        height: 50,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 40,
-        backgroundColor: "#E8EAFE",
-        marginBottom:15
+        marginTop: 20,
+        backgroundColor: "#6F6FF8",
+        marginBottom:20,
+        backgroundColor: "#6F6FF8",
+        padding: 20,
     },
+    loginText: {
+        fontSize: 18,
+        color: 'white',
+        fontWeight: '500',
+        letterSpacing: 0.5,
+      },
 });
