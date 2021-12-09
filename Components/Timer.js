@@ -57,7 +57,7 @@ function Timer({ navigation, route }) {
             setPauseStatus(!pauseStatus);
           }}
         >
-          <Text style={styles.buttonText}>{pauseStatus? 'Start':'Pause'}</Text>
+          <Text style={styles.buttonText}>{pauseStatus? 'Continue':'Pause'}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -65,7 +65,7 @@ function Timer({ navigation, route }) {
           onPress={() => {
             let tempTime = hours*3600 + minutes*60 + seconds;
             console.log(tempTime)
-            dataModel.updateTime(item.key, {text: item.text, time: tempTime, icon: item.icon, color: item.color});
+            dataModel.updateTime(item.key, {text: item.text, time: tempTime, icon: item.icon, color: item.color, label: item.label});
             navigation.navigate("Home");
           }}
         >
