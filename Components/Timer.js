@@ -57,7 +57,7 @@ function Timer({ navigation, route }) {
             setPauseStatus(!pauseStatus);
           }}
         >
-          <Text>{pauseStatus? 'Start':'Pause'}</Text>
+          <Text style={styles.buttonText}>{pauseStatus? 'Start':'Pause'}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -69,7 +69,7 @@ function Timer({ navigation, route }) {
             navigation.navigate("Home");
           }}
         >
-          <Text>Finish</Text>
+          <Text style={styles.buttonText}>Finish</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#CCE5FD",
-    padding: 15,
+    backgroundColor: "#71BBFF",
+    padding: 20,
     width: '60%',
     marginBottom: '10%',
     marginTop: '20%',
@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
   },
   purplebutton: {
     alignItems: "center",
-    backgroundColor: "#E8EAFE",
-    padding: 15,
+    backgroundColor: "#6F6FF8",
+    padding: 20,
     width: '60%',
     marginBottom: '10%',
     borderRadius: 10,
@@ -130,8 +130,13 @@ const styles = StyleSheet.create({
     flex: 1,
     width:'80%',
     paddingLeft: '10%'
-
-  }
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: '500',
+    letterSpacing: 0.5,
+  },
 
 
 });
