@@ -8,16 +8,14 @@ function TaskDetail({ navigation, route }) {
 
   const item = route.params.task;
 
-  const icons = {dict: {'game-controller-outline': '#B47CFC', 'desktop-outline': '#F78F8A', 'barbell-outline': '#5EA8EC', 'paw-outline': '#4AC2AA', 'color-palette-outline': '#FCC089',
-  'bed-outline': '#F46972', 'restaurant-outline': '#D0DD84', 'library-outline': '#7AD3DA', 'people-outline': '#DEBD9C', 'ellipsis-horizontal-outline': '#CDCDCD',}}
+  const icons = {dict: {'desktop-outline': ['#F78F8A', 'Work'], 'game-controller-outline': ['#B47CFC', 'Game'], 'barbell-outline': ['#5EA8EC', 'Workout'], 'paw-outline': ['#4AC2AA', 'Pet'], 'color-palette-outline': ['#FCC089', 'Art'],
+  'bed-outline': ['#F46972', 'Sleep'], 'restaurant-outline': ['#D0DD84', 'Food'], 'library-outline': ['#7AD3DA', 'Study'], 'people-outline': ['#DEBD9C', 'Social'], 'ellipsis-horizontal-outline': ['#CDCDCD','Others']}}
 
   const [inputText, setInputText] = useState(item.text);
   const [color, setColor] = useState(item.color);
   const [icon, setIcon] = useState(item.icon);
-  // const [hour, setHour] = useState('');
-  // const [min, setMin] = useState('');
-  // const [sec, setSec] = useState('');
   const [timeStr, setTimeStr] = useState(item.time)
+  const [iconLabel, setIconLabel] = useState('Work');
 
   let dataModel = getDataModel();
 
@@ -38,9 +36,6 @@ function TaskDetail({ navigation, route }) {
               timeL[i] = parseInt(timeL[i],10);
           }
       }
-      // let hour = timeL[0];
-      // let min = timeL[1];
-      // let sec = timeL[2]
       return timeL[0]*3600 + timeL[1]*60 + timeL[2];
   }
 
@@ -56,10 +51,13 @@ function TaskDetail({ navigation, route }) {
 
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Task</Text>
-            <Input  style={styles.inputText}
+            <Input 
               placeholder=" Add new task"
+              placeholderTextColor='#B7B7B7'
               onChangeText={(text)=>setInputText(text)}
               value={inputText}
+              inputContainerStyle={styles.underline}
+              inputStyle={styles.inputText}
             />
           </View>
 
@@ -67,8 +65,10 @@ function TaskDetail({ navigation, route }) {
             <Text style={styles.label}>Time</Text>
             <Input style={styles.inputText}
               placeholder=" Enter time in 00:00:00"
-                   onChangeText={(time)=>setTimeStr(time)}
-                   value={timeStr}
+              placeholderTextColor='#B7B7B7'
+              onChangeText={(time)=>setTimeStr(time)}
+              value={timeStr}
+              inputContainerStyle={styles.underline}
             />
           </View>
 
@@ -77,30 +77,32 @@ function TaskDetail({ navigation, route }) {
 
             <View style={styles.selectContentContainer}>
                 {
-                  Object.keys(icons.dict).map((item)=>(
-                      <View style={styles.colorCell}>
-                          <TouchableOpacity
-                            onPress={() => {
-                              setIcon(item);
-                              setColor(icons.dict[item])}}
-                            style={{
-                              display: 'flex',
-                              justifyContent:'center',
-                              alignItems: 'center',
-                              width: 55,
-                              height: 55,
-                              borderRadius: 55,
-                              borderWidth: 5,
-                              backgroundColor: icons.dict[item],
-                              borderColor: item===icon?'#6F6FF8': 'white',
-                            }}>
-                            <Icon name={item}
-                                type='ionicon'
-                                color='white'
-                              />
-                          </TouchableOpacity>
-                      </View>
-                  ))
+                    Object.keys(icons.dict).map((item)=>(
+                        <View style={styles.colorCell}>
+                            <TouchableOpacity
+                              onPress={() => {
+                                setIcon(item);
+                                setColor(icons.dict[item][0]);
+                                setIconLabel(icons.dict[item][1])}}
+                              style={{
+                                display: 'flex',
+                                justifyContent:'center',
+                                alignItems: 'center',
+                                width: 55,
+                                height: 55,
+                                borderRadius: 55,
+                                borderWidth: 5,
+                                backgroundColor: icons.dict[item][0],
+                                borderColor: item===icon?'#6F6FF8': 'white',
+                              }}>
+                              <Icon name={item}
+                                  type='ionicon'
+                                  color='white'
+                                />
+                            </TouchableOpacity>
+                              <Text style={styles.iconLabel}>{icons.dict[item][1]}</Text>
+                        </View>
+                    ))
                 }
             </View>
           </View>
@@ -113,7 +115,7 @@ function TaskDetail({ navigation, route }) {
           <TouchableOpacity
             style={styles.button1}
             onPress={() => {
-              dataModel.updateItem(item.key, {text: inputText, time: handleTime(), color: color, icon: icon});
+              dataModel.updateItem(item.key, {text: inputText, time: handleTime(), color: color, icon: icon, label: iconLabel});
               navigation.navigate("Home");
           }}>
             <Text style={styles.buttonText}>Confirm</Text>
@@ -146,7 +148,7 @@ function TaskDetail({ navigation, route }) {
       },
       activityContainer: {
         marginTop: 100,
-        flex: 2,
+        flex: 2.5,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
@@ -161,7 +163,7 @@ function TaskDetail({ navigation, route }) {
         marginHorizontal: 40,
       },
       inputContainer: {
-        height: '25%',
+        flex: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',
@@ -170,8 +172,18 @@ function TaskDetail({ navigation, route }) {
         marginVertical: 10,
       },
       inputText: {
-       fontSize: 18,
+        paddingHorizontal: 5,
+        fontSize: 18,
+        fontWeight: '500',
+        letterSpacing: 0.5,
       },
+      underline: {
+        marginTop: 10,
+        borderColor: '#FFFFFF',
+        borderRadius: 15,
+        padding: 10,
+        backgroundColor: '#F6F6F6'
+       },
       label: {
         paddingLeft: 10,
         paddingBottom: 20,
@@ -202,7 +214,7 @@ function TaskDetail({ navigation, route }) {
         letterSpacing: 0.5,
       },
       selectionContainer: {
-        height: '25%',
+        flex: 3,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',
@@ -218,12 +230,19 @@ function TaskDetail({ navigation, route }) {
   
       },
       colorCell: {
-        width: '20%',
-        height: '100%',
+        width: '25%',
+        marginBottom: 15,
         borderRadius: 40,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+      },
+      iconLabel: {
+        fontSize: 12,
+        color: 'black',
+        fontWeight: '500',
+        letterSpacing: 0.5,
+        marginTop:5,
       }
   
   
