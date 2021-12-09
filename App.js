@@ -60,7 +60,7 @@ export function HomeScreenStack() {
             return <Feather name={iconName} size={20} color={color} />;
           },
           tabBarActiveTintColor: '#5258E4',
-          tabBarInactiveTintColor: 'gray',
+          tabBarInactiveTintColor: 'grey',
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
