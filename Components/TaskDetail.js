@@ -15,7 +15,7 @@ function TaskDetail({ navigation, route }) {
   const [color, setColor] = useState(item.color);
   const [icon, setIcon] = useState(item.icon);
   const [timeStr, setTimeStr] = useState(item.time)
-  const [iconLabel, setIconLabel] = useState('Work');
+  const [iconLabel, setIconLabel] = useState(item.label);
 
   let dataModel = getDataModel();
 
