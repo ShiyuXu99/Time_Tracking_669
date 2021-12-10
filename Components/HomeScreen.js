@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
     },
     imageCell: {
-      flex: 8,
+      flex: 7,
       width: '100%',
       height: '100%',
       display: 'flex',
@@ -183,14 +183,13 @@ const styles = StyleSheet.create({
       letterSpacing: 0.5,
     },
     logoutCell: {
-      flex: 2,
+      flex: 3.2,
       width: '100%',
       height: '100%',
       flexDirection: 'row',
-      justifyContent: 'flex-start',
+      justifyContent: 'space-between',
       alignItems: 'center',
       // backgroundColor:'grey',
-      height: '100%',
     },
     listContainer: {
         flex: 8,

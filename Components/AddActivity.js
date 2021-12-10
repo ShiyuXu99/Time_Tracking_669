@@ -12,8 +12,8 @@ function AddActivity({ navigation }) {
   'bed-outline': ['#F46972', 'Sleep'], 'restaurant-outline': ['#D0DD84', 'Food'], 'library-outline': ['#7AD3DA', 'Study'], 'people-outline': ['#DEBD9C', 'Social'], 'ellipsis-horizontal-outline': ['#CDCDCD','Others']}}
 
   const [inputText, setInputText] = useState('');
-  const [color, setColor] = useState(icons.dict['game-controller-outline']);
-  const [icon, setIcon] = useState('game-controller-outline');
+  const [color, setColor] = useState(icons.dict['desktop-outline'][0]);
+  const [icon, setIcon] = useState('desktop-outline');
   const [iconLabel, setIconLabel] = useState('Work');
 
 
