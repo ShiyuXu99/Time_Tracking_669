@@ -12,8 +12,8 @@ function AddActivity({ navigation }) {
   'bed-outline': ['#F46972', 'Sleep'], 'restaurant-outline': ['#D0DD84', 'Food'], 'library-outline': ['#7AD3DA', 'Study'], 'people-outline': ['#DEBD9C', 'Social'], 'ellipsis-horizontal-outline': ['#CDCDCD','Others']}}
 
   const [inputText, setInputText] = useState('');
-  const [color, setColor] = useState(icons.dict['game-controller-outline']);
-  const [icon, setIcon] = useState('game-controller-outline');
+  const [color, setColor] = useState(icons.dict['desktop-outline']);
+  const [icon, setIcon] = useState('desktop-outline');
   const [iconLabel, setIconLabel] = useState('Work');
 
 
@@ -58,7 +58,7 @@ function AddActivity({ navigation }) {
                                   borderRadius: 55,
                                   borderWidth: 5,
                                   backgroundColor: icons.dict[item][0],
-                                  borderColor: item===icon?'#6F6FF8': 'white',
+                                  borderColor: item ===icon?'#6F6FF8': 'white',
                                 }}>
                                 <Icon name={item}
                                     type='ionicon'
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '40%',
     borderRadius: 10,
+
   },
   button2: {
     alignItems: "center",

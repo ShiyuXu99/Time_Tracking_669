@@ -74,6 +74,13 @@ export default function SignUp({ navigation }) {
                 >
                     <Text style={styles.loginText}>Create Account</Text>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate("Login");
+                }
+                }>
+                    <Text style={styles.forgot_button}>Already have an account? Log In!
+                    </Text>
+                </TouchableOpacity>
 
             </View>
 
@@ -137,7 +144,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 20,
-        backgroundColor: "#6F6FF8",
         marginBottom:20,
         backgroundColor: "#6F6FF8",
         padding: 20,
