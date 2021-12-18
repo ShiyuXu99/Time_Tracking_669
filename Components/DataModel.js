@@ -3,7 +3,7 @@ import {
   initializeFirestore, collection, getDocs, query,
   doc, addDoc, deleteDoc, updateDoc, getDoc, setDoc, onSnapshot, where,  orderBy
 } from "firebase/firestore";
-import { firebaseConfig } from '../Secret';
+import { firebaseConfig } from '../Secrets';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 
 let app;
