@@ -64,7 +64,7 @@ function Timer({ navigation, route }) {
           style={styles.purplebutton}
           onPress={() => {
             let tempTime = hours*3600 + minutes*60 + seconds;
-            console.log(tempTime)
+            console.log( typeof tempTime)
             dataModel.updateTime(item.key, {text: item.text, time: tempTime, icon: item.icon, color: item.color, label: item.label});
             navigation.navigate("Home");
           }}

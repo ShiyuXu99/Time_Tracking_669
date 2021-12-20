@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, TouchableHighlight, Image } from 'react-native';
-
-// import { MaterialIcons as Icon } from '@expo/vector-icons';
 import { Icon } from 'react-native-elements'
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { getDataModel } from './DataModel';
@@ -18,7 +16,7 @@ function HomeScreen({ navigation }) {
       let date = new Date(null);
       date.setSeconds(time); // specify value for SECONDS here
       let result = date.toISOString().substr(11, 8);
-      console.log(result)
+      console.log(result.trim())
       return result;
   }
   useEffect(()=>{
@@ -39,12 +37,12 @@ function HomeScreen({ navigation }) {
 
           <View style={styles.logoutCell}>
             <Image style={styles.image} source={require('./image/cat3.gif')} />
-              <TouchableOpacity onPress={() => {
-                logout;
-                navigation.navigate("Login");}}>
-                <Icon name='log-out' type='feather' size='24' color='black'/>
-                {/* <Text style={styles.logoutText}>Log Out</Text> */}
-              </TouchableOpacity>
+              {/*<TouchableOpacity onPress={async () => {*/}
+              {/*    await logout();*/}
+              {/*  navigation.navigate("Login");}}>*/}
+              {/*  <Icon name='log-out' type='feather' size='24' color='black'/>*/}
+              {/*  /!* <Text style={styles.logoutText}>Log Out</Text> *!/*/}
+              {/*</TouchableOpacity>*/}
           </View>
 
         </View>
@@ -85,11 +83,10 @@ function HomeScreen({ navigation }) {
                       <View>
                         <Text style={styles.listItemText}>{item.text}</Text>
                         <View style={styles.timeContainer}>
-
-                          <View style={styles.timeIcon}>
+                          <View>
                             <Icon name='clock' type='feather' size='16' color='#4F4F4F' />
                           </View>
-                          <View style={styles.timeTextCell}>
+                          <View>
                             <Text style={styles.timeText}>{getTime(item.time)}</Text>
                           </View>
 
@@ -158,7 +155,7 @@ const styles = StyleSheet.create({
       width: '100%',
       height: '100%',
       display: 'flex',
-      alignItems: 'flex-start',
+      alignItems: 'flex-end',
       justifyContent: 'center',
     },
     image: {
@@ -185,7 +182,6 @@ const styles = StyleSheet.create({
     logoutCell: {
       flex: 3.2,
       width: '100%',
-      height: '100%',
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -232,9 +228,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 10,
       },
-      timeIcon: {
-        marginRight: 5,
-      },
+      // timeIcon: {
+      //   marginRight: 5,
+      // },
       timeText: {
         fontSize: 14,
         color: '#4F4F4F',

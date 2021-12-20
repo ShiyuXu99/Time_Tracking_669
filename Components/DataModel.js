@@ -33,9 +33,10 @@ export async function signup(email, password) {
 }
 
 export async function logout(){
+    console.log("here")
     try {
         await signOut(auth)
-    } catch {
+        } catch {
         alert("Error!");
     }
 }

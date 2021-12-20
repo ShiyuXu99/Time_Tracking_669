@@ -36,7 +36,9 @@ function TaskDetail({ navigation, route }) {
               timeL[i] = parseInt(timeL[i],10);
           }
       }
-      return timeL[0]*3600 + timeL[1]*60 + timeL[2];
+      let tempNum = timeL[0]*3600 + timeL[1]*60 + timeL[2]
+      console.log(typeof tempNum)
+      return tempNum;
   }
 
     useEffect(()=>{

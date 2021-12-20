@@ -7,11 +7,14 @@ import DataPage from './Components/DataPage';
 import AddActivity from './Components/AddActivity';
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
-
+import {
+    Button,
+} from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, View } from 'react-native';
-import { Feather } from '@expo/vector-icons'; 
+import { Feather } from '@expo/vector-icons';
 import TaskDetail from './Components/TaskDetail';
+import { logout } from './Components/DataModel'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +43,7 @@ const Tab = createBottomTabNavigator();
 //   );
 // }
 
-export function HomeScreenStack() {
+export function HomeScreenStack({navigation}) {
   return (
     // <NavigationContainer>
       <Tab.Navigator 
@@ -63,7 +66,25 @@ export function HomeScreenStack() {
           tabBarInactiveTintColor: 'grey',
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        {/*<Tab.Screen name="Home" component={HomeScreen} />*/}
+          <Tab.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                  headerRight: () => (
+                      <Button
+                          onPress={async () => {
+                              await logout();
+                              navigation.navigate("Login");}}
+                          title="Log Out"
+                      />
+
+                  ),
+                  headerTitleStyle: {
+                      fontWeight: 'bold',
+                      fontSize: 16
+                  }
+              }}/>
         <Tab.Screen name="New Task" component={AddActivity} />
         <Tab.Screen name="Data Page" component={DataPage} />
 
